@@ -6,7 +6,7 @@ services:
 before_install:
   - docker build -t johnmutuma5/docker-fib-client-tests -f ./client/Dockerfile.dev ./client
 
-scripts:
+script:
   - docker run johnmutuma5/docker-fib-client-tests npm test -- --coverage
  
 after_success: # build images for production
