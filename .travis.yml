@@ -1,0 +1,23 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t johnmutuma5/docker-fib-client-tests -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run johnmutuma5/docker-fib-client-tests npm test -- --coverage
+ 
+after_success: # build images for production
+  - docker build -t johnmutuma5/docker-fib-client ./client
+  - docker build -t johnmutuma5/docker-fib-server ./server
+  - docker build -t johnmutuma5/docker-fib-worker ./worker
+  - docker build -t johnmutuma5/docker-fib-nginx ./nginx
+    # login to dockerhub to send images
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # push the images over to dockerhub
+  - docker push johnmutuma5/docker-fib-client
+  - docker push johnmutuma5/docker-fib-server
+  - docker push johnmutuma5/docker-fib-worker
+  - docker push johnmutuma5/docker-fib-nginx
