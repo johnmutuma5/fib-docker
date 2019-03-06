@@ -1,0 +1,17 @@
+{
+  "name": "fib-docker",
+  "version": "1.0.0",
+  "description": "An overly complicated fibionacci calculator simply for docker multi-container demo purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "author": "John Mutuma",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.18.10",
+    "redis": "^2.8.0"
+  }
+}
