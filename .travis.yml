@@ -3,6 +3,7 @@ sudo: required
 services:
   - docker
 
+
 before_install:
   >- docker build -t johnmutuma5/docker-fib-client-tests
     -f ./client/Dockerfile.dev ./client
