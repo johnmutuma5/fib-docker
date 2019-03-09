@@ -1,0 +1,34 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "johnmutuma5/docker-fib-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "johnmutuma5/docker-fib-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "johnmutuma5/docker-fib-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "johnmutuma5/docker-fib-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        "hostPort": 80,
+        "containerPort": 80
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}

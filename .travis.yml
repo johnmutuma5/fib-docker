@@ -4,10 +4,12 @@ services:
   - docker
 
 before_install:
-  - docker build -t johnmutuma5/docker-fib-client-tests -f ./client/Dockerfile.dev ./client
+  >- docker build -t johnmutuma5/docker-fib-client-tests
+    -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run johnmutuma5/docker-fib-client-tests npm test -- --coverage
+  >- docker run johnmutuma5/docker-fib-client-tests
+    npm test -- --coverage
  
 after_success: # build images for production
   - docker build -t johnmutuma5/docker-fib-client ./client
@@ -15,7 +17,8 @@ after_success: # build images for production
   - docker build -t johnmutuma5/docker-fib-worker ./worker
   - docker build -t johnmutuma5/docker-fib-nginx ./nginx
     # login to dockerhub to send images
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  >- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
+    --password-stdin
     # push the images over to dockerhub
   - docker push johnmutuma5/docker-fib-client
   - docker push johnmutuma5/docker-fib-server
