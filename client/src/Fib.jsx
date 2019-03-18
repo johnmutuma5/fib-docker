@@ -36,7 +36,7 @@ class Fib extends Component {
   renderValues () {
     const entries = Object.keys(this.state.values).map((key) => (
       <div key = { key }>
-        For index { key }, the Fib value is {this.state.values[key]};
+        For the index { key }, the Fib value is {this.state.values[key]};
       </div>
     ));
     return entries;

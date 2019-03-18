@@ -69,6 +69,7 @@
     "not op_mini all"
   ],
   "jest": {
+    "roots": ["./src"],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts",

@@ -31,9 +31,12 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile.dev
+    image: fib-client
     volumes:
       - /app/node_modules
       - ./client:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true # enables hot-reloadin with WebPack
 
   worker:
     build:

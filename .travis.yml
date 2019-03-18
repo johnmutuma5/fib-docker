@@ -26,3 +26,16 @@ after_success: # build images for production
   - docker push johnmutuma5/docker-fib-server
   - docker push johnmutuma5/docker-fib-worker
   - docker push johnmutuma5/docker-fib-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-631657872849
+  bucket_path: fib-docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
